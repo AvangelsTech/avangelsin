@@ -6,12 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/AvangelsTech/staraus.git
+    repoURL: https://github.com/AvangelsTech/avangelsin.git
     targetRevision: HEAD
-    path: deployed-yaml-files
+    path: avangelsin-deployed-yaml-files
   destination:
     server: https://kubernetes.default.svc
-    namespace: staraus
+    namespace: avangelsin
 
   syncPolicy:
     automated: 
