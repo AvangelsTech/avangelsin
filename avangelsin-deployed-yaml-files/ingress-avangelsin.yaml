@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    name: avangelsinwp
+  name: avangelsin-ingress
+  namespace: avangelsin
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.allow-http: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 20m
+#    nginx.ingress.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:ap-south-1:971691552202:certificate/223c1713-dd30-432a-aa89-2a626635ed16
+    nginx.ingress.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:ap-south-1:971691552202:certificate/c7ae8c40-f448-496f-9a7a-6051726f27b0
+
+spec:
+  ingressClassName: nginx #avangelsin-nginx
+  defaultBackend:
+    service:
+      name: avangelsinwp
+      port:
+        number: 80
+  rules:
+  - host: 'avangelstech.in'
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: avangelsinwp
+            port:
+              number: 80
